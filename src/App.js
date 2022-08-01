@@ -5,13 +5,21 @@ import SingleCard from './components/SingleCard';
 // array of cards is constant & not going to change 
 // no need to be stored inside component state & re-evaluated every time the component is re-rendered
 
+// const cardImages = [
+//   { "src": "/img/helmet-1.png", matched: false },
+//   { "src": "/img/potion-1.png", matched: false },
+//   { "src": "/img/ring-1.png", matched: false },
+//   { "src": "/img/scroll-1.png", matched: false },
+//   { "src": "/img/shield-1.png", matched: false },
+//   { "src": "/img/sword-1.png", matched: false },
+// ]
 const cardImages = [
-  { "src": "/img/helmet-1.png", matched: false },
-  { "src": "/img/potion-1.png", matched: false },
-  { "src": "/img/ring-1.png", matched: false },
-  { "src": "/img/scroll-1.png", matched: false },
-  { "src": "/img/shield-1.png", matched: false },
-  { "src": "/img/sword-1.png", matched: false },
+  { "src": "/img/fish.png", matched: false },
+  { "src": "/img/yuanyang-tea.png", matched: false },
+  { "src": "/img/market.png", matched: false },
+  { "src": "/img/bank.png", matched: false },
+  { "src": "/img/taxi.png", matched: false },
+  { "src": "/img/sail-boat.png", matched: false },
 ]
 
 
@@ -37,6 +45,7 @@ function App() {
       // add 'id' property to the card object(with 'src' property in it)
       .map((card) => ({ ...card, id: Math.random() }))
 
+    // reset player choices to null
     setChoiceOne(null)
     setChoiceTwo(null)
     // update card state to be the shuffled cards
@@ -79,12 +88,13 @@ function App() {
           })
         })
         resetTurn()
+      // if the two cards don't match, reset turn after 1 second
       } else {
         setTimeout(() => resetTurn(), 1000)
       }
       
     }
-
+      // set player's choices as dependencies
   }, [choiceOne, choiceTwo])
   
   // reset choices & increase turn
@@ -94,14 +104,15 @@ function App() {
     setTurns(prevTurns => prevTurns + 1)
     setDisabled(false)
   }
-
+  // start game when page is loaded, no dependency = only fire once
   useEffect(() => {
     shuffleCards()
   }, [])
   
   return (
     <div className="App">
-      <h1>Magic Match</h1>
+      <h1>Hong Kong Matching Cards</h1>
+      {/* start new game when clicked */}
       <button onClick={shuffleCards}>New Game</button>
 
       <div className="card-grid">
