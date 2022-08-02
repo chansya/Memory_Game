@@ -7,6 +7,13 @@ body {
   margin: 0;
   font-size: 1.5em;
   text-align: center;
-  background: #edf2f4;
-  color: #114b5f;
+  /* background: #edf2f4; */
+  background: url("http://4.bp.blogspot.com/-zMzjHhd_I78/TWZTmKyci9I/AAAAAAAAAEQ/EWn2BZUQYtI/s1600/Victoria+Harbour+Building+Landscape+%2528Line+Work%2529.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position:center;
+  color: #c4105b;
 }
+

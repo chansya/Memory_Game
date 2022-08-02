@@ -14,12 +14,12 @@ import SingleCard from './components/SingleCard';
 //   { "src": "/img/sword-1.png", matched: false },
 // ]
 const cardImages = [
-  { "src": "/img/fish.png", matched: false },
-  { "src": "/img/yuanyang-tea.png", matched: false },
-  { "src": "/img/market.png", matched: false },
-  { "src": "/img/bank.png", matched: false },
-  { "src": "/img/taxi.png", matched: false },
-  { "src": "/img/sail-boat.png", matched: false },
+  { "src": "/img/fish.png", name: "Fish ball", matched: false },
+  { "src": "/img/yuanyang-tea.png", name: "Yuanyang Tea", matched: false },
+  { "src": "/img/market.png", name:"Temple Street market", matched: false },
+  { "src": "/img/bank.png", name: "Bank of China", matched: false },
+  { "src": "/img/taxi.png", name: "Taxi", matched: false },
+  { "src": "/img/sail-boat.png", name: "Boat on Victoria Harbour", matched: false },
 ]
 
 
@@ -59,7 +59,7 @@ function App() {
     // tenary operator(if ? action for true: action for false)
     // if there is a value for choiceOne, set choiceTwo to be card
     // if choiceOne is null, set choiceOne to be card
-    choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+    choiceOne && choiceOne !== card ? setChoiceTwo(card) : setChoiceOne(card)
 
     // state update is scheduled, not instant,
     // cannot compare the two cards here->need useEffect hook 
@@ -87,6 +87,7 @@ function App() {
             }
           })
         })
+        
         resetTurn()
       // if the two cards don't match, reset turn after 1 second
       } else {
@@ -109,12 +110,20 @@ function App() {
     shuffleCards()
   }, [])
   
+  const matchedCards = cards.filter(card=> card.matched===true)
+  
+
   return (
     <div className="App">
       <h1>Hong Kong Matching Cards</h1>
       {/* start new game when clicked */}
       <button onClick={shuffleCards}>New Game</button>
-
+      {/* {matchedCards && (<div>Matched Cards
+        {matchedCards.map(card=>(
+          <p key={card.id}>{card.name}<img className="side-img" src={card.src}/></p>         
+        ))}
+        
+      </div>)} */}
       <div className="card-grid">
         {cards.map(card => (
           <SingleCard 
