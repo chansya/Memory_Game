@@ -1,7 +1,7 @@
 # Hong Kong Memory
 
 A single-page memory card game made with React.
-Try matching the cards adn learn more about Hong Kong!
+Try matching the cards and learn more about Hong Kong!
 
 ## Preview
 
